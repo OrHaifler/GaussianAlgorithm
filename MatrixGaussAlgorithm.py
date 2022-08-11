@@ -1,5 +1,5 @@
 import numpy as np
-
+rank = 0
 m = int(input("Enter Number of Rows: "))
 n = int(input("Enter Number of Columns: "))
 a = np.zeros((m,n), dtype=float)
@@ -33,55 +33,13 @@ while j < n - 1:
                    
     currdim+=1 
     j+=1 
-
+x = 0
+emp = np.zeros(n).copy()
+for i in range(m):
+    if np.array_equal(arr[i, :], emp):
+        x+=1
+rank = m - x
+print("The echelon form of your matrix is:")
 print(arr)
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-    
-
-        
-
-
-                
-
-
-    
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+print("The rank of your matrix is:")
+print(rank)
