@@ -1,4 +1,5 @@
 import numpy as np
+det = 1
 rank = 0
 m = int(input("Enter Number of Rows: "))
 n = int(input("Enter Number of Columns: "))
@@ -25,8 +26,11 @@ while j < n - 1:
     temp = arr[currdim,:].copy()
     arr[currdim,:] = arr[pivot,:].copy()
     arr[pivot,:] = temp
+    if pivot != j:
+        det *= -1
     if arr[currdim,j] != 0: 
         arr[currdim,:] = np.multiply(arr[currdim,:], 1/arr[currdim,j]).copy()
+        det *= arr[currdim,j]
     for i in range(currdim + 1,m):
         if arr[i,j] != 0:
             arr[i,:] = np.add(arr[i,:], arr[currdim,:]*(-arr[i,j])).copy()
@@ -43,3 +47,7 @@ print("The echelon form of your matrix is:")
 print(arr)
 print("The rank of your matrix is:")
 print(rank)
+diag_prod = 1
+for j in range(m):
+    diag_prod *= arr[j][j]
+print(diag_prod * det)
